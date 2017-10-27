@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router';
+
+import Unauthed from './layout/unauthed/unauthed';
+import Header from './layout/unauthed/header/header';
 import './app.less';
 
 class App extends Component {
 
-  componentDidMount() {
-
-  }
-
   render() {
     return (
-      <div className="some-container">
-        <p className="some-paragraph">This is a test</p>
+      <div className="main-app">
+        <Header/>
+        <Route path='/' component={Unauthed} />
       </div>
     );
   }

@@ -4,6 +4,12 @@ module.exports = {
   entry: [
     './src/index.js'
   ],
+  externals: {
+    'cheerio': 'window',
+    'react/addons': true,
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true
+  },
   output: {
     publicPath: '/',
     filename: 'bundle.js'
@@ -34,4 +40,3 @@ module.exports = {
     new ExtractTextPlugin("[name].css")
   ]
 };
-// TODO: get less compiling working
