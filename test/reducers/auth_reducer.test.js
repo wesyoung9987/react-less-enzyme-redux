@@ -11,11 +11,47 @@ describe('Auth Reducer', () => {
   });
 
   it('handles action of type AUTH_USER', () => {
-    const action = { 'type': AUTH_USER };
-    var result = authReducer({}, action);
-    console.log(result.authenticated);
-    expect(result.authenticated).to.equal(true);
-    expect(result.error).to.equal('');
+    describe('AUTH_USER', () => {
+
+      let action;
+      let result;
+      beforeEach(() => {
+        action = {
+          'type': AUTH_USER,
+          'payload': {
+            firstName: 'John',
+            lastName: 'Doe',
+            email: 'test@mail.com'
+          }
+        };
+        result = authReducer({}, action);
+      });
+
+      it('authenticates a user', () => {
+        expect(result.authenticated).to.equal(true);
+      });
+
+      it('removes any auth error messages', () => {
+        expect(result.error).to.equal('');
+      });
+
+      it('creates a user object', () => {
+        expect(result.user).to.exist;
+      });
+
+      it('creates a user first name', () => {
+        expect(result.user.firstName).to.equal('John');
+      });
+
+      it('creates a user last name', () => {
+        expect(result.user.lastName).to.equal('Doe');
+      });
+
+      it('creates a user email', () => {
+        expect(result.user.email).to.equal('test@mail.com');
+      });
+    });
+
   });
 
   it('handles action of type AUTH_ERROR', () => {
